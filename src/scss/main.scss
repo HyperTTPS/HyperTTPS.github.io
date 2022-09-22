@@ -1,0 +1,12 @@
+
+@use "core/normalize";
+@use "core/variables" as v;
+
+body{
+    background-color: v.$primary-color;
+    color: v.$primary-text-color;
+}
+
+h1{
+    text-align: center;
+}
