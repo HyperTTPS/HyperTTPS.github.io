@@ -24,9 +24,7 @@ jobs:
 
       # Make destination directory for compiled css
       - name: Create Directory for Compiled CSS
-        run: |
-          mkdir -vp /dist
-          mkdir -vp /dist/css
+        run: mkdir -vp dist/css
         
       # Build the SCSS
       - name: Build SCSS
