@@ -29,5 +29,5 @@ jobs:
       # Build the SCSS
       - name: Build SCSS
         run: |
-          sudo apt-get install -y sass
+          sudo apt-get install -y dart-sass
           sass src/scss/:dist/css/
