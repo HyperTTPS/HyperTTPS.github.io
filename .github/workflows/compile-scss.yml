@@ -28,7 +28,6 @@ jobs:
         
       # Build the SCSS
       - name: Build SCSS
-        uses: gha-utilities/sass-build@v0.4.9
-        with:
-          source: src/scss
-          destination: dist/css
+        run: |
+          sudo apt-get install -y sass
+          sass src/scss/:dist/css/
