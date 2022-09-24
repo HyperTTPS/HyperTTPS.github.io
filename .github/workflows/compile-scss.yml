@@ -31,3 +31,10 @@ jobs:
         run: |
           sudo npm install -g sass
           sass src/scss/:dist/css/
+          
+      # Commit and push
+      - name: Push and Commit
+        run: |
+          git add dist/
+          git commit -m "GitHub Actions compiled scss into css"
+          git push
