@@ -29,5 +29,5 @@ jobs:
       # Build the SCSS
       - name: Build SCSS
         run: |
-          sudo brew install sass/sass/sass
+          sudo npm install -g sass
           sass src/scss/:dist/css/
