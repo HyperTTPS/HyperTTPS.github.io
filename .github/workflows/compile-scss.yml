@@ -35,6 +35,8 @@ jobs:
       # Commit and push
       - name: Push and Commit
         run: |
+          git config --local user.email 'action@github.com'
+          git config --local user.name 'GitHub Action'
           git add dist/
-          git commit -m "GitHub Actions compiled scss into css"
+          git commit -m "Compiled SCSS into CSS"
           git push
