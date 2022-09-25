@@ -1,4 +1,5 @@
 
+@use "../core/variables" as v;
 
 #hero{
     width: 100%;
@@ -30,6 +31,27 @@
         list-style-type: none;
         
         text-align: center;
+
+        a{
+            text-decoration: none;
+            color: v.$primary-text-color;
+
+            display: block;
+
+            background-color: rgba(v.$tertiary-color, 0);
+            padding: 5px 20px;
+            border: 1px solid #0000;
+            border-radius: 10px;
+            border-right-color: #aaa;
+            border-left-color: #aaa;
+            transition: 250ms ease-in-out;
+
+            &:hover{
+                background-color: v.$tertiary-color;
+                border-color: v.$tertiary-color;
+                border-radius: 50px;
+            }
+        }
     }
 
     #hero-image{
