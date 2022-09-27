@@ -1,4 +1,23 @@
 
+# About
+This is my portfolio website.
+
+# Getting Started
+
+### Prerequisites
+
+- Node.js
+- npm
+- grunt
+- grunt-cli
+
+### Steps
+
+Have Grunt watch for file changes so that SCSS and JS can be compiled and minified automatically:
+```
+grunt watch
+```
+
 # Design Decisions
 This section will detail the decisions that was made regarding the design of the website's systems - the graphical design will not be discussed here.
 
@@ -13,12 +32,10 @@ The files resulting from compiling SCSS into CSS is tracked by Git because I cou
 # Compilation Setup
 This section will detail how the different types of files should be compiled, where the resulting compiled file should be placed and more.
 
-## SCSS
-Have your SCSS compile from src/scss/ to dist/css/ with the file extension ".css", not ".min.css". A subfolder in the scss folder should get compiled to the corresponding subfolder in the css folder, e.g. src/scss/pages/index.scss should get compiled to dist/css/pages/index.css.
-This can be done with the following dart-sass command:
-```
-sass --style compressed --no-source-map src/scss/:dist/css/
-```
-You can add the `--watch` flag if you want to automatically compile the SCSS files when they're modified.
+### Grunt
 
-For debugging purposes, it can be useful to remove `--style compressed` to make the compiled CSS more readable but only compressed CSS should be committed to Git.
+Grunt has been set up to compile SCSS into CSS and uglify JS. The specific Grunt setup can be seen in the Gruntfile.js folder in the root of the repository.
+The `grunt-contrib-sass` plugin is used to compile SCSS from the src/scss folder into CSS in the dist/css folder. Thereafter, the `grunt-contrib-cssmin` plugin is used to minify this CSS but now with the ".min.css" extension. The minified CSS is placed in the same folder as the regular CSS.
+The `grunt-contrib-uglify` plugin is used to uglify JS from the src/js folder into the dist/js folder.
+
+To automatically have these plugins executed when you change the SCSS or JS files in the src folder, the `grunt-contrib-watch` plugin is used. 

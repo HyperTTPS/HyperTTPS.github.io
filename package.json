@@ -1,0 +1,23 @@
+{
+  "name": "portfolio-website",
+  "version": "1.0.0",
+  "description": "Portfolio Website",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HyperTTPS/HyperTTPS.github.io.git"
+  },
+  "author": "HyperTTPS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HyperTTPS/HyperTTPS.github.io/issues"
+  },
+  "homepage": "https://github.com/HyperTTPS/HyperTTPS.github.io#readme",
+  "dependencies": {
+    "grunt": "^1.5.3",
+    "grunt-contrib-cssmin": "^4.0.0",
+    "grunt-contrib-sass": "^2.0.0",
+    "grunt-contrib-uglify": "^5.2.2",
+    "grunt-contrib-watch": "^1.1.0"
+  }
+}
