@@ -28,26 +28,15 @@
   text-align: center;
 }
 #hero > div #hero-sections li {
-  opacity: 2;
-  /*
-  @if ($anim == "fade"){
-      @include _transition(opacity, 0, 1);
-      $transitions: _add-transition($transitions, "opacity", ($duration, $easing, $delay));
-  } @else if ($anim == "slide"){
-      @include _transition(transform, translateX(-100%), none);
-      $transitions: _add-transition($transitions, "transform", ($duration, $easing, $delay));
-  }
-  */
-  /*
-  @if ($anim == "fade"){
-      @include _transition(opacity, 0, 1);
-      $transitions: _add-transition($transitions, "opacity", ($duration, $easing, $delay));
-  } @else if ($anim == "slide"){
-      @include _transition(transform, translateX(-100%), none);
-      $transitions: _add-transition($transitions, "transform", ($duration, $easing, $delay));
-  }
-  */
-  transition: opacity 1s ease 0s, transform 1s ease 0s;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 1s ease calc(0s + 200ms * var(--animation-offset, 0)), transform 1s ease calc(0s + 200ms * var(--animation-offset, 0));
+}
+#hero > div #hero-sections li[data-animation-show] {
+  opacity: 1;
+}
+#hero > div #hero-sections li[data-animation-show] {
+  transform: none;
 }
 #hero > div #hero-sections a {
   text-decoration: none;
