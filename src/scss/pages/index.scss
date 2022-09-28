@@ -34,7 +34,7 @@
         text-align: center;
 
         li{
-            @include animations.animation(("fade": (), "slide": ()));
+            @include animations.animation(("fade": (), "slide": ("horizontal": -100%)));
         }
 
         a{

@@ -29,7 +29,7 @@
 }
 #hero > div #hero-sections li {
   opacity: 0;
-  transform: translateX(-100%);
+  transform: translate(-100%, 0);
   transition: opacity 1s ease calc(0s + 200ms * var(--animation-offset, 0)), transform 1s ease calc(0s + 200ms * var(--animation-offset, 0));
 }
 #hero > div #hero-sections li[data-animation-show] {
