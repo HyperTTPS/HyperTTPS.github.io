@@ -1,30 +1,72 @@
 
 @use "sass:map";
 @use "sass:string";
+@use "sass:list";
 
-// Animations is a map from the animation-name to a list of the options.
+$_animations: (
+    "fade": (
+        opacity: (0, 1),
+    ),
+    "slide": (
+        transform: (translateX(-100%), none),
+    )
+);
+
+// Animations is a map from the animation-name to a map of the options.
 // Animation-name e.g. being "fade" or "slide"
-@mixin animation($animations){
+@mixin animation($animations, $global-duration: 1s, $global-easing: ease, $global-delay: 0s){
     $transitions: "";
     @each $anim, $options in $animations{
-        @if ($anim == "fade"){
-            $transitions: string.insert($transitions, ", opacity 1s", -1);
+        // Get animation options
+        $duration: _get-option($options, "duration", $global-duration);
+        $easing: _get-option($options, "easing", $global-easing);
+        $delay: _get-option($options, "delay", $global-delay);
 
-            opacity: 0;
-            &[data-animation-show]{
-                opacity: 1;
-            }
-        } @else if ($anim == "slide"){
-            $transitions: string.insert($transitions, ", transform 1s", -1);
-
-            transform: translateX(-100%);
-
-            &[data-animation-show]{
-                transform: none;
+        // Get animation and apply
+        @each $known-anim, $properties in $_animations{
+            @if ($anim == $known-anim){
+                @each $prop, $values in $properties{
+                    @include _transition($prop, index($values, 1), index($values, 2));
+                    $transitions: _add-transition($transitions, $prop, ($duration, $easing, $delay));
+                }
             }
         }
+        /*
+        @if ($anim == "fade"){
+            @include _transition(opacity, 0, 1);
+            $transitions: _add-transition($transitions, "opacity", ($duration, $easing, $delay));
+        } @else if ($anim == "slide"){
+            @include _transition(transform, translateX(-100%), none);
+            $transitions: _add-transition($transitions, "transform", ($duration, $easing, $delay));
+        }
+        */
     }
+    
     transition: #{string.slice($transitions, 3, -1)};
+}
+
+@mixin _transition($property-name, $hidden-value, $shown-value){
+    #{$property-name}: $hidden-value;
+    &[data-animation-show]{
+        #{$property-name}: $shown-value;
+    }
+}
+
+@function _add-transition($current-transitions, $property-to-animate, $animation-properties){
+    $properties: "";
+    @each $prop in $animation-properties{
+        $properties: string.insert($properties, " #{$prop}", -1);
+    }
+    @return string.insert($current-transitions, ", #{$property-to-animate}#{$properties}", -1);
+}
+
+@function _get-option($map, $key, $default){
+    @each $option, $value in $map{
+        @if ($option == $key){
+            @return $value;
+        }
+    }
+    @return $default;
 }
 
 @media(prefers-reduced-motion){

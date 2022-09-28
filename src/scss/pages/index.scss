@@ -34,7 +34,7 @@
         text-align: center;
 
         li{
-            @include animations.animation(("fade": ("idk"), "slide": ("idk")))
+            @include animations.animation(("fade": (), "slide": ()), 1s);
         }
 
         a{
