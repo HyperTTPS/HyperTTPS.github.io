@@ -6,10 +6,10 @@ This is my portfolio website.
 
 ### Prerequisites
 
-- Node.js
+- [Node.js](https://nodejs.org/)
 - npm
-- grunt
-- grunt-cli
+- [grunt](https://www.npmjs.com/package/grunt)
+- [grunt-cli](https://www.npmjs.com/package/grunt-cli)
 
 ### Steps
 
