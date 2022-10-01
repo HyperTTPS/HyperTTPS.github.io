@@ -6,7 +6,12 @@
 // Properties is a map from the property-name to an array of format: (from-value, to-value, [options]).
 // It's optional to give the options. The options is a map from the options to their values.
 // If the options are not given for a property, they default to the "global" ones given as parameters to the function.
-@mixin transition($properties, $duration: 1s, $easing: ease, $delay: 0s, $offset-delay: 200ms){
+@mixin transition($properties, $options: none, $instant-revert: false){
+    $duration: _get-option($options, "duration", 1s);
+    $easing: _get-option($options, "easing", ease);
+    $delay: _get-option($options, "delay", 0s);
+    $offset-delay: _get-option($options, "offset-delay", 200ms);
+
     $transitions: "";
     @each $property-name, $values in $properties{
         // Extract values from list
@@ -33,7 +38,32 @@
         @include _transition($property-name, nth($values, 1), nth($values, 2));
         $transitions: _add-transition($transitions, $property-name, _get-properties-list($local-duration, $local-easing, $local-delay, $local-offset-delay));
     }
-    transition: #{string.slice($transitions, 3, -1)};
+
+    @if ($instant-revert == true){
+        transition: none;
+        &[data-animation-show]{
+            transition: #{string.slice($transitions, 3, -1)};
+        }
+    }
+    @else{
+        transition: #{string.slice($transitions, 3, -1)};
+    }
+}
+
+@mixin transition-on-visible($properties, $options: none, $stay-shown: false){
+    $start-on-visible-replay: negate-boolean($stay-shown);
+    --animate-on-visible: true;
+    --animate-on-visible-replay: #{$start-on-visible-replay};
+    @include transition($properties, $options, $start-on-visible-replay);
+}
+
+@function negate-boolean($boolean){
+    @if ($boolean == false){
+        @return true;
+    }
+    @else{
+        @return false;
+    }
 }
 
 @function _get-properties-list($duration, $easing, $delay, $offset-delay){

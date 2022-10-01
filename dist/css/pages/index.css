@@ -8,6 +8,19 @@
   height: 100vh;
   overflow-y: hidden;
 }
+#hero h1 {
+  --animate-on-visible: true;
+  --animate-on-visible-replay: false;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 1s ease calc(0s + 200ms * var(--animation-offset, 0)), transform 1s ease calc(0s + 200ms * var(--animation-offset, 0));
+}
+#hero h1[data-animation-show] {
+  opacity: 1;
+}
+#hero h1[data-animation-show] {
+  transform: none;
+}
 
 #hero > div {
   display: flex;
@@ -28,6 +41,8 @@
   text-align: center;
 }
 #hero > div #hero-sections li {
+  --animate-on-visible: true;
+  --animate-on-visible-replay: false;
   opacity: 0;
   transform: translateX(-100%);
   transition: opacity 1s ease calc(0s + 200ms * var(--animation-offset, 0)), transform 1s ease calc(0s + 200ms * var(--animation-offset, 0));
