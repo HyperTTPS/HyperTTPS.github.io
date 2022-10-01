@@ -3,44 +3,35 @@
 @use "sass:string";
 @use "sass:list";
 
-$_simple-animations: (
-    "fade": (
-        opacity: (0, 1), // Hidden value first, then shown value
-    ),
-    /*"slide": (
-        transform: (translateX(-100%), none),
-    )*/
-);
-
-// Animations is a map from the animation-name to a map of the options.
-// Animation-name e.g. being "fade" or "slide"
-@mixin animation($animations, $global-duration: 1s, $global-easing: ease, $global-delay: 0s, $global-offset-delay: 200ms){
+// Properties is a map from the property-name to an array of format: (from-value, to-value, [options]).
+// It's optional to give the options. The options is a map from the options to their values.
+// If the options are not given for a property, they default to the "global" ones given as parameters to the function.
+@mixin transition($properties, $duration: 1s, $easing: ease, $delay: 0s, $offset-delay: 200ms){
     $transitions: "";
-    @each $anim, $options in $animations{
+    @each $property-name, $values in $properties{
+        // Extract values from list
+        $from: nth($values, 1);
+        $to: nth($values, 2);
+        $options: null;
+        @if (length($values) == 3){
+            $options: nth($values, 3);
+        }
+
         // Get animation options
-        $duration: _get-option($options, "duration", $global-duration);
-        $easing: _get-option($options, "easing", $global-easing);
-        $delay: _get-option($options, "delay", $global-delay);
-        $offset-delay: _get-option($options, "offset-delay", $global-offset-delay);
-
-        // Get simple animation and apply
-        @each $known-anim, $properties in $_simple-animations{
-            @if ($anim == $known-anim){
-                @each $prop, $values in $properties{
-                    @include _transition($prop, nth($values, 1), nth($values, 2));
-                    $transitions: _add-transition($transitions, $prop, _get-properties-list($duration, $easing, $delay, $offset-delay));
-                }
-            }
+        $local-duration: $duration;
+        $local-easing: $easing;
+        $local-delay: $delay;
+        $local-offset-delay: $offset-delay;
+        @if ($options){
+            $local-duration: _get-option($options, "duration", $local-duration);
+            $local-easing: _get-option($options, "easing", $local-easing);
+            $local-delay: _get-option($options, "delay", $local-delay);
+            $local-offset-delay: _get-option($options, "offset-delay", $local-offset-delay);
         }
 
-        // "Advanced" animations
-        @if ($anim == "slide"){
-            $horizontal: _get-option($options, "horizontal", 0);
-            $vertical: _get-option($options, "vertical", 0);
-
-            @include _transition(transform, translate(#{$horizontal}, #{$vertical}), none);
-            $transitions: _add-transition($transitions, transform, _get-properties-list($duration, $easing, $delay, $offset-delay));
-        }
+        // Apply the transition
+        @include _transition($property-name, nth($values, 1), nth($values, 2));
+        $transitions: _add-transition($transitions, $property-name, _get-properties-list($local-duration, $local-easing, $local-delay, $local-offset-delay));
     }
     transition: #{string.slice($transitions, 3, -1)};
 }

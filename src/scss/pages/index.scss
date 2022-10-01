@@ -34,7 +34,10 @@
         text-align: center;
 
         li{
-            @include animations.animation(("fade": (), "slide": ("horizontal": -100%)));
+            @include animations.transition((
+                opacity: (0, 1),
+                transform: (translateX(-100%), none),
+            ));
         }
 
         a{
