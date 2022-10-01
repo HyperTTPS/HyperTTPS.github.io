@@ -13,11 +13,13 @@
     "url": "https://github.com/HyperTTPS/HyperTTPS.github.io/issues"
   },
   "homepage": "https://github.com/HyperTTPS/HyperTTPS.github.io#readme",
-  "dependencies": {
+  "devDependencies": {
     "grunt": "^1.5.3",
     "grunt-contrib-cssmin": "^4.0.0",
     "grunt-contrib-sass": "^2.0.0",
     "grunt-contrib-uglify": "^5.2.2",
-    "grunt-contrib-watch": "^1.1.0"
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-run": "^0.8.1",
+    "typescript": "^4.8.4"
   }
 }

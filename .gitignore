@@ -1,2 +1,2 @@
-dist/css/**/*.map
+dist/**/*.map
 node_modules/**/*

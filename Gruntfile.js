@@ -4,8 +4,8 @@ module.exports = function (grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: 'src/js',
-                    src: '**/*.js',
+                    cwd: 'dist/js',
+                    src: ['**/*.js', "!**/*.min.js"],
                     dest: 'dist/js',
                     ext: ".min.js"
                 }]
@@ -33,9 +33,14 @@ module.exports = function (grunt) {
                 }]
             }
         },
+        run: {
+            tscompile: { // Compile TypeScript using tsconfig.json
+                exec: "npx tsc"
+            }
+        },
         watch: {
             js: {
-                files: ["src/js/**/*.js"],
+                files: ['dist/js/**/*.js', "!dist/js/**/*.min.js"],
                 tasks: ["uglify"]
             },
             scss: {
@@ -45,6 +50,10 @@ module.exports = function (grunt) {
             cssmin: {
                 files: ["dist/css/**/*.css", "!dist/css/**/*.min.css"],
                 tasks: ["cssmin"]
+            },
+            ts: {
+                files: ["src/ts/**/*.ts"],
+                tasks: ["run:tscompile"]
             }
         }
     });
@@ -53,4 +62,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-contrib-sass");
     grunt.loadNpmTasks("grunt-contrib-cssmin");
     grunt.loadNpmTasks("grunt-contrib-watch");
+    grunt.loadNpmTasks("grunt-run");
 }
