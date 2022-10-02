@@ -12,7 +12,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 });
 
-const elements = document.querySelectorAll(".animation");
+const elements = document.querySelectorAll("body *");
 elements.forEach(element => {
     let style = getComputedStyle(element);
 

@@ -97,7 +97,7 @@
 }
 
 @media(prefers-reduced-motion){
-    .animation{
-        transition-duration: 0;
+    *{
+        transition-duration: 0s !important;
     }
 }
