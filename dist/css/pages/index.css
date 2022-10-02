@@ -9,7 +9,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: center;
-  gap: 50px;
+  gap: max(10%, 50px);
   overflow: hidden;
   font-size: 2em;
 }
@@ -82,13 +82,17 @@
   --animate-on-visible-replay: false;
   opacity: 0;
   transform: scale(0.9);
-  transition: opacity 1s ease calc(0s + 200ms * var(--animation-offset, 0)), transform 1s ease calc(0s + 200ms * var(--animation-offset, 0));
+  filter: blur(2px);
+  transition: opacity 1s ease calc(0s + 200ms * var(--animation-offset, 0)), transform 1s ease calc(0s + 200ms * var(--animation-offset, 0)), filter 1s ease calc(0s + 200ms * var(--animation-offset, 0));
 }
 #hero #hero-image[data-animation-show] {
   opacity: 1;
 }
 #hero #hero-image[data-animation-show] {
   transform: none;
+}
+#hero #hero-image[data-animation-show] {
+  filter: none;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -11,7 +11,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-content: center;
-    gap: 50px;
+    gap: max(10%, 50px);
 
     overflow: hidden;
 
@@ -89,6 +89,7 @@
         @include animations.transition-on-visible((
             opacity: (0, 1),
             transform: (scale(0.9), none),
+            filter: (blur(2px), none),
         ), (
             "duration": $first-animation-duration
         ), $stay-shown: true)
