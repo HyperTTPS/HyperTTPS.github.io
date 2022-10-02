@@ -6,7 +6,9 @@
 // Properties is a map from the property-name to an array of format: (from-value, to-value, [options]).
 // It's optional to give the options. The options is a map from the options to their values.
 // If the options are not given for a property, they default to the "global" ones given as parameters to the function.
-@mixin transition($properties, $options: none, $instant-revert: false){
+@mixin transition($properties, $options: none, $instant-revert: false, $begin-on-start: false){
+    --animate-on-start: #{$begin-on-start};
+
     $duration: _get-option($options, "duration", 1s);
     $easing: _get-option($options, "easing", ease);
     $delay: _get-option($options, "delay", 0s);

@@ -1,0 +1,1 @@
+function show(t){t.setAttribute("data-animation-show","")}function hide(t){t.removeAttribute("data-animation-show")}export{show,hide};

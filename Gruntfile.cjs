@@ -7,7 +7,7 @@ module.exports = function (grunt) {
                     cwd: 'dist/js',
                     src: ['**/*.js', "!**/*.min.js"],
                     dest: 'dist/js',
-                    ext: ".min.js"
+                    ext: ".js"
                 }]
             }
         },
@@ -39,10 +39,6 @@ module.exports = function (grunt) {
             }
         },
         watch: {
-            js: {
-                files: ['dist/js/**/*.js', "!dist/js/**/*.min.js"],
-                tasks: ["uglify"]
-            },
             scss: {
                 files: ["src/scss/**/*.scss"],
                 tasks: ["sass"]
@@ -53,7 +49,7 @@ module.exports = function (grunt) {
             },
             ts: {
                 files: ["src/ts/**/*.ts"],
-                tasks: ["run:tscompile"]
+                tasks: ["run:tscompile", "uglify"]
             }
         }
     });

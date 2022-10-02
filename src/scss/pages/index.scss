@@ -26,12 +26,12 @@
     }
 
     #hero-name{
-        @include animations.transition-on-visible((
+        @include animations.transition((
             opacity: (0, 1),
             transform: (translateY(-100%), none),
         ), (
             "duration": $first-animation-duration
-        ), $stay-shown: true);
+        ), $begin-on-start: true);
 
         font-size: 1.4em;
         margin: 0;
@@ -52,12 +52,12 @@
         text-align: center;
 
         li{
-            @include animations.transition-on-visible((
+            @include animations.transition((
                 opacity: (0, 1),
                 transform: (translateX(100%), none),
             ), (
                 "delay": $first-animation-duration
-            ), $stay-shown: true);
+            ), $begin-on-start: true);
         }
 
         a{
@@ -86,13 +86,13 @@
         height: 100vh;
         width: auto;
 
-        @include animations.transition-on-visible((
+        @include animations.transition((
             opacity: (0, 1),
             transform: (scale(0.9), none),
             filter: (blur(2px), none),
         ), (
             "duration": $first-animation-duration
-        ), $stay-shown: true)
+        ), $begin-on-start: true)
     }
 }
 

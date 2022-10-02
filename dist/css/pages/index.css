@@ -21,8 +21,7 @@
   margin-top: 50px;
 }
 #hero #hero-name {
-  --animate-on-visible: true;
-  --animate-on-visible-replay: false;
+  --animate-on-start: true;
   opacity: 0;
   transform: translateY(-100%);
   transition: opacity 1s ease calc(0s + 200ms * var(--animation-offset, 0)), transform 1s ease calc(0s + 200ms * var(--animation-offset, 0));
@@ -46,8 +45,7 @@
   text-align: center;
 }
 #hero #hero-sections li {
-  --animate-on-visible: true;
-  --animate-on-visible-replay: false;
+  --animate-on-start: true;
   opacity: 0;
   transform: translateX(100%);
   transition: opacity 1s ease calc(1s + 200ms * var(--animation-offset, 0)), transform 1s ease calc(1s + 200ms * var(--animation-offset, 0));
@@ -78,8 +76,7 @@
 #hero #hero-image {
   height: 100vh;
   width: auto;
-  --animate-on-visible: true;
-  --animate-on-visible-replay: false;
+  --animate-on-start: true;
   opacity: 0;
   transform: scale(0.9);
   filter: blur(2px);
