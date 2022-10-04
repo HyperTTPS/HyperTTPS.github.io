@@ -1,38 +1,50 @@
 
 @use "../components/animations";
 @use "../core/variables" as v;
+@use "sass:math";
 
 #hero{
     $first-animation-duration: 1s;
+    $element-space: 50px;
+    $element-space-half: math.div($element-space, 2);
 
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    margin-top: $element-space;
 
     display: flex;
     flex-flow: column wrap;
-    gap: max(10%, 50px);
-
-    overflow: hidden;
+    align-items: center;
+    gap: $element-space-half;
 
     font-size: 2em;
 
-    #hero-image-container{
-        display: inline-block;
-        align-self: flex-end;
+    #hero-image{
+        border-radius: 50%;
+        width: 150px;
+        height: auto;
+
+        @include animations.transition((
+            opacity: (0, 1),
+            transform: (scale(0.9), none),
+            filter: (blur(2px), none),
+        ), (
+            "duration": $first-animation-duration
+        ), $begin-on-start: true)
     }
 
     #hero-info-container{
         display: inline-flex;
         width: fit-content;
         flex-flow: column nowrap;
-        gap: 50px;
-        margin-top: 50px;
+        gap: $element-space;
     }
 
     #hero-name{
         @include animations.transition((
             opacity: (0, 1),
             transform: (translateY(-100%), none),
+            filter: (blur(4px), none),
         ), (
             "duration": $first-animation-duration
         ), $begin-on-start: true);
@@ -44,7 +56,7 @@
     #hero-sections{
         display: flex;
         flex-flow: column nowrap;
-        gap: 30px;
+        gap: $element-space-half;
 
         width: max(75%, 200px);
 
@@ -57,10 +69,12 @@
 
         li{
             @include animations.transition((
-                opacity: (0, 1),
+                opacity: (0, 1, (
+                    "delay": $first-animation-duration + (0.1*$first-animation-duration) // Hide the start of the transform animation which can be a bit rough
+                )),
                 transform: (translateX(-100%), none),
             ), (
-                "delay": $first-animation-duration
+                "delay": $first-animation-duration,
             ), $begin-on-start: true);
         }
 
@@ -85,19 +99,4 @@
             }
         }
     }
-
-    #hero-image{
-        height: 100vh;
-        width: auto;
-
-        @include animations.transition((
-            opacity: (0, 1),
-            transform: (scale(0.9), none),
-            filter: (blur(2px), none),
-        ), (
-            "duration": $first-animation-duration
-        ), $begin-on-start: true)
-    }
 }
-
-
