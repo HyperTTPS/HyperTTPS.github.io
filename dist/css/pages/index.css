@@ -6,16 +6,19 @@
 #hero {
   width: 100%;
   height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-content: center;
+  display: flex;
+  flex-flow: column wrap;
   gap: max(10%, 50px);
   overflow: hidden;
   font-size: 2em;
 }
-#hero > div:first-child {
+#hero #hero-image-container {
+  display: inline-block;
+  align-self: flex-end;
+}
+#hero #hero-info-container {
   display: inline-flex;
-  margin-left: auto;
+  width: fit-content;
   flex-flow: column nowrap;
   gap: 50px;
   margin-top: 50px;
@@ -47,7 +50,7 @@
 #hero #hero-sections li {
   --animate-on-start: true;
   opacity: 0;
-  transform: translateX(100%);
+  transform: translateX(-100%);
   transition: opacity 1s ease calc(1s + 200ms * var(--animation-offset, 0)), transform 1s ease calc(1s + 200ms * var(--animation-offset, 0));
 }
 #hero #hero-sections li[data-animation-show] {
