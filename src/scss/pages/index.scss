@@ -54,8 +54,7 @@
     }
 
     #hero-sections{
-        display: flex;
-        flex-flow: column nowrap;
+        display: grid;
         gap: $element-space-half;
 
         width: max(75%, 200px);
@@ -99,4 +98,11 @@
             }
         }
     }
+}
+
+::view-transition-old(headshot),
+::view-transition-new(headshot),
+::view-transition-old(name),
+::view-transition-new(name) {
+    animation-duration: 5000ms;
 }
