@@ -1,24 +1,27 @@
+# HyperTTP Portfolio Website
 
-# About
 This is my portfolio website.
 
-# Getting Started
+## Development Steps
+
+The steps you need to take to start developing on the website.
 
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/)
 - npm
-- [grunt](https://www.npmjs.com/package/grunt)
 - [grunt-cli](https://www.npmjs.com/package/grunt-cli)
 
-### Steps
+### Compiling files
+
+**The first time developing on the project locally**, you need to install additional dependencies by using `npm install` in the root of the repository.
 
 Have Grunt watch for file changes so that SCSS and JS can be compiled and minified automatically:
 ```
 grunt watch
 ```
 
-# Design Decisions
+## Design Decisions
 This section will detail the decisions that was made regarding the design of the website's systems - the graphical design will not be discussed here.
 
 ### Normalizing CSS
@@ -29,12 +32,12 @@ I thought about using a reset css file instead but a reset file aims to set all 
 ### Compiled CSS is Tracked by Git
 The files resulting from compiling SCSS into CSS is tracked by Git because I could not find a way to automate the compilation due to the website being hosted by GitHub Pages. GitHub Pages hosts the files on GitHub but for the files to be on GitHub it needs to be tracked by Git. I could not find a way to compile the CSS files only for the GitHub Pages deployment and keep them out of Git.
 
-# Compilation Setup
+## Compilation Setup
 This section will detail how the different types of files should be compiled, where the resulting compiled file should be placed and more.
 
 ### Grunt
 
-Grunt has been set up to compile SCSS into CSS and uglify JS. The specific Grunt setup can be seen in the Gruntfile.js folder in the root of the repository.
+Grunt has been set up to compile SCSS into CSS and uglify JS. The specific Grunt setup can be seen in the Gruntfile.js folder at the root of the repository.
 The `grunt-contrib-sass` plugin is used to compile SCSS from the src/scss folder into CSS in the dist/css folder. Thereafter, the `grunt-contrib-cssmin` plugin is used to minify this CSS but now with the ".min.css" extension. The minified CSS is placed in the same folder as the regular CSS.
 The `grunt-contrib-uglify` plugin is used to uglify JS from the src/js folder into the dist/js folder.
 
