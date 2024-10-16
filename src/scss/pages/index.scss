@@ -5,7 +5,7 @@
 
 #hero{
     $first-animation-duration: 1s;
-    $element-space: 50px;
+    $element-space: 75px;
     $element-space-half: math.div($element-space, 2);
 
     width: 100%;
@@ -98,6 +98,26 @@
             }
         }
     }
+}
+
+section {
+  h2 {
+    border: 1px solid #0000;
+    /* border-right-color: #aaa; */
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+    transition: 250ms ease-in-out;
+
+    width: fit-content;
+    padding: 0.5rem 2rem;
+    margin: auto;
+  }
+
+  &:hover {
+    h2 {
+      /* border-right-color: v.$tertiary-color; */
+      border-bottom-color: v.$tertiary-color;
+    }
+  }
 }
 
 ::view-transition-old(headshot),
