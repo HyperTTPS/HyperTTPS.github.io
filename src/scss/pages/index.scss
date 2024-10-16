@@ -101,22 +101,39 @@
 }
 
 section {
-  h2 {
-    border: 1px solid #0000;
-    /* border-right-color: #aaa; */
-    border-bottom-color: rgba(255, 255, 255, 0.3);
-    transition: 250ms ease-in-out;
+  /* h2 { */
+  /*   border: 1px solid #0000; */
+  /*   border-right-color: #aaa; */
+  /*   border-bottom-color: rgba(255, 255, 255, 0.3); */
+  /*   transition: 250ms ease-in-out; */
+  /**/
+  /*   width: fit-content; */
+  /*   padding: 0.5rem 2rem; */
+  /*   margin: auto; */
+  /* } */
 
-    width: fit-content;
-    padding: 0.5rem 2rem;
-    margin: auto;
+  h2 {
+    position: relative;
   }
 
-  &:hover {
-    h2 {
-      /* border-right-color: v.$tertiary-color; */
-      border-bottom-color: v.$tertiary-color;
-    }
+  h2::after {
+    content: "";
+    width: 25%;
+    height: 1px;
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-color: #555;
+    transition: 250ms ease-in-out;
+    mask-image: linear-gradient(to right, transparent, black, transparent);
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+  }
+
+  &:hover h2::after {
+    background-color: v.$tertiary-color
   }
 }
 

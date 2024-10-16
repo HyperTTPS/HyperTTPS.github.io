@@ -38,3 +38,15 @@ body {
 h1, h2{
   text-align: center;
 }
+
+.faded-splitter {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(to right, transparent, #aaa 20%, #aaa 80%, transparent);
+  margin: auto;
+}
+
+.w25 {
+  width: 25%;
+}
+
